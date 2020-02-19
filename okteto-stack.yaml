@@ -1,4 +1,4 @@
-okteto: true
+name: voting-app
 services:
   vote:
     public: true
