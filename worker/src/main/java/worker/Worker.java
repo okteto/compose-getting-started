@@ -53,7 +53,7 @@ class Worker {
         conn.keys("*");
         break;
       } catch (JedisConnectionException e) {
-        System.err.println("Waiting for redis");
+        System.err.println("Waiting for redis...");
         sleep(1000);
       }
     }
@@ -66,7 +66,6 @@ class Worker {
     Connection conn = null;
 
     try {
-
       Class.forName("org.postgresql.Driver");
       String url = "jdbc:postgresql://" + host + "/postgres";
 
@@ -74,7 +73,7 @@ class Worker {
         try {
           conn = DriverManager.getConnection(url, "postgres", "");
         } catch (SQLException e) {
-          System.err.println("Waiting for db");
+          System.err.println("Waiting for db...");
           sleep(1000);
         }
       }
