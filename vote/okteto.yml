@@ -1,0 +1,9 @@
+name: vote
+workdir: /src
+command: ["python", "app.py"]
+environment:
+  - FLASK_ENV=development
+forward:
+  - 8080:8080
+persistentVolume:
+  enabled: false
