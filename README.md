@@ -1,4 +1,4 @@
-# Getting Started on Okteto Cloud with Stacks
+# Getting Started with Okteto Stacks
 
 This example shows how to leverage [Okteto](https://github.com/okteto/okteto) to deploys the Voting App on Okteto Cloud using [Stacks](https://okteto.com/docs/cloud/stacks). Stacks are designed for developers that don't want to deal with the complexities of Kubernetes manifests.
 
