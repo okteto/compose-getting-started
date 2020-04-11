@@ -1,6 +1,6 @@
 # Getting Started with Okteto Stacks
 
-This example shows how to leverage [Okteto](https://github.com/okteto/okteto) to deploys the Voting App on Okteto Cloud using [Stacks](https://okteto.com/docs/cloud/stacks). Stacks are designed for developers that don't want to deal with the complexities of Kubernetes manifests.
+This example shows how to leverage [Okteto](https://github.com/okteto/okteto) to deploys the Voting App on Okteto Cloud using [Stacks](hhttps://okteto.com/docs/cloud/stacks#manifest-reference). Stacks are designed for developers that don't want to deal with the complexities of Kubernetes manifests.
 
 ## Prerequisites
 
@@ -16,7 +16,10 @@ $ git clone https://github.com/okteto/stacks-getting-started
 $ cd stacks-getting-started
 ```
 
-The Voting App is a simple web application implemented using Python, with Redis for storage. Execute the command below to deploy the application in your Kubernetes cluster:
+The Voting App is a simple web application implemented using Python, with Redis for storage. 
+The `okteto-stack.yml` file contains the [Stack manifest](https://okteto.com/docs/cloud/stacks#manifest-reference) of the Voting App.
+Deploy the Voting App by executing:
+
 
 ```console
 $ okteto stack deploy --wait
