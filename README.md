@@ -1,11 +1,11 @@
 # Getting Started with Okteto Stacks
 
-This example shows how to leverage [Okteto](https://github.com/okteto/okteto) to deploys the Voting App on Okteto Cloud using [Stacks](hhttps://okteto.com/docs/cloud/stacks#manifest-reference). Stacks are designed for developers that don't want to deal with the complexities of Kubernetes manifests.
+This example shows how to leverage [Okteto](https://github.com/okteto/okteto) to develop the Voting App using [Stacks](hhttps://okteto.com/docs/cloud/stacks#manifest-reference). Stacks are designed for developers that don't want to deal with the complexities of Kubernetes manifests.
 
 ## Prerequisites
 
 - Install the Okteto CLI. Follow this [guide](https://okteto.com/docs/getting-started/installation) if you haven't done it yet.
-- Access to a Kubernetes Cluster. You can also give [Okteto Cloud](https://okteto.com/) a try. Okteto Cloud is a development platform for Kubernetes applications. Free developer accounts come with 3GB of RAM, 1.5 CPUs, and 5GB Disk space.
+- Access to a Kubernetes Cluster. You can also give [Okteto Cloud](https://okteto.com/) a try. Okteto Cloud is a development platform for Kubernetes applications. Free developer accounts come with 4GB of RAM, 2 CPUs, and 5GB Disk space.
 
 ## Deploy the Voting App
 
@@ -66,7 +66,7 @@ $ okteto up -f vote/okteto.yml
 * Debugger PIN: 279-349-987
 ```
 
-From this moment, every change you do from your local IDE will be immediately hot reloaded by your application:
+From this moment, every change you do from your local IDE will be immediately hot reloaded by your application running on Kubernetes:
 
 ```console
 * Detected change in '/src/app.py', reloading
