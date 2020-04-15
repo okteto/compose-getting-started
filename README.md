@@ -1,6 +1,6 @@
 # Getting Started with Okteto Stacks
 
-This example shows how to leverage [Okteto](https://github.com/okteto/okteto) to develop an application using [Stacks](hhttps://okteto.com/docs/cloud/stacks#manifest-reference). Stacks are designed for developers that don't want to deal with the complexities of Kubernetes manifests.
+This example shows how to leverage [Okteto](https://github.com/okteto/okteto) to develop an application using [Stacks](hhttps://okteto.com/docs/cloud/stacks#manifest-reference). Stacks are designed for developers that don't want to deal with the complexities of Kubernetes manifests or Helm charts.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ $ cd stacks-getting-started
 ```
 
 The Sample App is a simple web application implemented using Python, with Redis for storage. 
-The `okteto-stack.yml` file contains the [Stack manifest](https://okteto.com/docs/cloud/stacks#manifest-reference) of the Sample App.
+The `okteto-stack.yml` file contains the [Stack manifest](https://okteto.com/docs/reference/stacks) of the Sample App.
 Deploy the Sample App by executing:
 
 
@@ -28,6 +28,8 @@ $ okteto stack deploy --wait
 ```console
 ✓  Successfully deployed stack 'voting-app'
 ```
+
+> The [Stack CLI reference](https://okteto.com/docs/reference/cli#stack) explains the different `okteto stack` subcommands and options.
 
 Check that all pods are ready by executing the command below:
 
@@ -75,7 +77,7 @@ From this moment, every change you do from your local IDE will be immediately ho
 * Debugger PIN: 167-523-127
 ```
 
-## Redeploy the Voting App
+## Redeploy the Sample App
 
 When you are done with your code changes, you can rebuild and redeploy your application by executing the following command:
 
@@ -114,7 +116,7 @@ i  Building image for service 'vote'...
 ✓  Successfully deployed stack 'voting-app'
 ```
 
-## Destroy the Voting App
+## Destroy the Sample App
 
 Execute the command below to destroy the application from your Kubernetes cluster:
 
