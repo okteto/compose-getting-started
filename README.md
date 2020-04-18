@@ -5,7 +5,7 @@ This example shows how to leverage [Okteto](https://github.com/okteto/okteto) to
 ## Prerequisites
 
 - Install the Okteto CLI. Follow this [guide](https://okteto.com/docs/getting-started/installation) if you haven't done it yet.
-- Access to a Kubernetes Cluster. You can also give [Okteto Cloud](https://okteto.com/) a try. Okteto Cloud is a development platform for Kubernetes applications. Free developer accounts come with 4GB of RAM, 2 CPUs, and 5GB Disk space.
+- Access to a Kubernetes Cluster. You can also give [Okteto Cloud](https://okteto.com/) a try. Okteto Cloud is a development platform for Kubernetes applications. Free developer accounts come with 4GB of RAM, 2 CPUs, and 10GB Disk space.
 
 ## Deploy the Sample App
 
