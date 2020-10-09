@@ -2,7 +2,7 @@ name: voting-app
 services:
   vote:
     public: true
-    image: okteto/vote:stacks
+    image: okteto.dev/vote
     build: vote
     replicas: 2
     ports:
