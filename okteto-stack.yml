@@ -1,12 +1,8 @@
 name: voting-app
 
-endpoints:
-  - path: /
-    service: vote
-    port: 8080
-
 services:
   vote:
+    public: true
     build: vote
     replicas: 2
     ports:
