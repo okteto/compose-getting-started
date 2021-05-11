@@ -1,7 +1,8 @@
 name: vote
-workdir: /src
 command: ["python", "app.py"]
 environment:
   - FLASK_ENV=development
+sync:
+  - .:/src
 forward:
   - 8080:8080
