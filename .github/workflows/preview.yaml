@@ -22,4 +22,3 @@ jobs:
         name: pr-${{ github.event.number }}-jmacelroy
         scope: personal
         timeout: 25m
-        file: .config
