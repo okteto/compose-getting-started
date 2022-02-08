@@ -1,4 +1,4 @@
-# file: .github/workflows/preview.yaml
+# # file: .github/workflows/preview.yaml
 on:
   pull_request:
     branches:
@@ -7,18 +7,18 @@ on:
 jobs:
   preview:
     runs-on: ubuntu-latest
-  steps:
+    steps:
     - name: Context
       uses: okteto/context@latest
       with:
         token: ${{ secrets.OKTETO_TOKEN }}
 
-    - name: Deploy preview environment
+    - name: Deploy Preview Environment
       uses: okteto/deploy-preview@latest
       env:
-       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         name: pr-${{ github.event.number }}-jmacelroy
-        scope: global
-        timeout: 15m
+        scope: personal
+        timeout: 25m
         file: .config
