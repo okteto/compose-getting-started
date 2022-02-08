@@ -1,6 +1,6 @@
 services:
   vote:
-    build: vote
+    build: ../vote
     scale: 2
     ports:
       - 8080:8080
