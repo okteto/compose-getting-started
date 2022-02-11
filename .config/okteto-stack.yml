@@ -1,5 +1,7 @@
 services:
   vote:
+    environment:
+      - TEST_SECRET
     build: ../vote
     scale: 2
     ports:

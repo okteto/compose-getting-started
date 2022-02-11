@@ -22,7 +22,7 @@ def hello():
     option_a, option_b = getOptions()
 
     try:
-        votesA = int(redis.get(option_a) or 0) 
+        votesA = int(redis.get(option_a) or 0)
         votesB = int(redis.get(option_b) or 0)
     except RedisError:
         votesA = "<i>cannot connect to Redis, counter disabled</i>"
@@ -56,6 +56,10 @@ def hello():
 
 
 if __name__ == "__main__":
+    print("**************************************")
+    print("Test Secret = ", os.getenv("TEST_SECRET", "default-fallback"))
+    print("**************************************")
+
     extra_files = []
     if "development" == os.getenv("FLASK_ENV"):
         app.jinja_env.auto_reload = True
