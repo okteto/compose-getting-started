@@ -1,6 +1,9 @@
 services:
   vote:
-    build: vote
+    build:
+      context: ./vote
+      dockerfile: Dockerfile.qa
+    image: vote:qa
     scale: 2
     ports:
       - 8080:8080
