@@ -1,8 +1,3 @@
-name: vote
-command: python app.py
-environment:
-  - FLASK_ENV=development
-sync:
-  - vote:/src
-forward:
-  - 8080:8080
+deploy:
+  compose:
+    - docker-compose.yml
