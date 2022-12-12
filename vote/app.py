@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 def getOptions():
     option_a = "hotdogs"
-    option_b = "Limade"
+    option_b = "Lemonade"
     return option_a, option_b
 
 @app.route("/", methods=['POST','GET'])
