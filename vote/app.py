@@ -13,8 +13,8 @@ redis = Redis(host="redis", db=0)
 app = Flask(__name__)
 
 def getOptions():
-    option_a = "American Football III"
-    option_b = "Hello Super Bowl"
+    option_a = "tacos"
+    option_b = "chili"
     return option_a, option_b
 
 @app.route("/", methods=['POST','GET'])
