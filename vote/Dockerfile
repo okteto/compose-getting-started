@@ -4,7 +4,8 @@ FROM python:3-slim
 # Set the application directory
 WORKDIR /src
 
-RUN pip install --upgrade pip
+RUN ls -lah /usr/local/lib/python3.11/site-packages
+RUN pip install --upgrade pip || ls -lah /usr/local/lib/python3.11/site-packages 
 
 # Install our requirements.txt
 ADD requirements.txt requirements.txt
