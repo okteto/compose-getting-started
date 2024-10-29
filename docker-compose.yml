@@ -1,6 +1,9 @@
 services:
   vote:
-    build: vote
+    build: 
+      context: vote
+      args:
+        - TEST_ENV_VAR="HELLO what is up my firends. Updated"
     ports:
       - 8080:8080
     environment:
