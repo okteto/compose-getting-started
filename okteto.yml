@@ -1,5 +1,7 @@
 deploy:
-  - name: Adding Jona Credentials
-    command: "echo '...Here are all the Jona Credentials...thank you...'"
-  - name: Deploy with multi-commands setup
-    command: "okteto deploy -f docker-compose.yml"
+  commands:
+  - name: Adding Jona Credentials for Docker compose deployment
+    command: "echo '...Here are all the Jona Credentials for docker-compose deployment...thank you...'"
+  compose: docker-compose.yml
+  # - name: Deploy with multi-commands setup
+  #   command: "okteto deploy -f docker-compose.yml"
