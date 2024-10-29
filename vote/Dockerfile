@@ -37,5 +37,6 @@ RUN echo "Test logging 7"
 RUN echo "Test logging 8"
 RUN echo "Test logging 9"
 RUN echo "Test logging 10"
+RUN echo "Test logging 11"
 # Define our command to be run when launching the container
 CMD ["python", "app.py"]
