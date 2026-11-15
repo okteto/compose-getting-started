@@ -4,10 +4,10 @@ services:
     ports:
       - 8080:8080
     environment:
-      - FLASK_ENV=development
+      - FLASK_DEBUG=1
     command: python app.py
     volumes:
-      - vote:/src
+      - ./vote:/src
 
   redis:
     image: redis
