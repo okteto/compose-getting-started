@@ -15,4 +15,5 @@
 !vote/requirements.txt
 !vote/requirements-test.txt
 !vote/*.py
+!vote/static
 !vote/templates
