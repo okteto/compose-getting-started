@@ -1,71 +1,62 @@
-from flask import Flask, render_template, request, make_response, g
+from pathlib import Path
+from typing import Annotated
+
+from fastapi import FastAPI, Form, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from redis import Redis, RedisError
 
-import os
 import socket
-import random
-import json
-import collections
+
+BASE_DIR = Path(__file__).parent
 
 hostname = socket.gethostname()
 
 redis = Redis(host="redis", db=0)
-app = Flask(__name__)
+app = FastAPI()
+app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
+templates = Jinja2Templates(directory=BASE_DIR / "templates")
 
 def getOptions():
     option_a = "hotdogs"
     option_b = "Lemonade"
     return option_a, option_b
 
-@app.route("/", methods=['POST','GET'])
-def hello():
+def getNamespace():
+    try:
+        with open('/var/run/secrets/kubernetes.io/serviceaccount/namespace', 'r') as fp:
+            return fp.read()
+    except OSError:
+        return "local"
+
+@app.api_route("/", methods=["GET", "POST"], response_class=HTMLResponse)
+def hello(request: Request, vote: Annotated[str | None, Form()] = None):
     option_a, option_b = getOptions()
 
     try:
-        votesA = int(redis.get(option_a) or 0) 
+        votesA = int(redis.get(option_a) or 0)
         votesB = int(redis.get(option_b) or 0)
     except RedisError:
-        votesA = "<i>cannot connect to Redis, counter disabled</i>"
-        votesB = "<i>cannot connect to Redis, counter disabled</i>"
+        votesA = "cannot connect to Redis, counter disabled"
+        votesB = "cannot connect to Redis, counter disabled"
 
     if request.method == 'POST':
         try:
-            vote = request.form['vote']
             if vote == "a":
                 votesA = redis.incr(option_a)
             else:
                 votesB = redis.incr(option_b)
         except Exception as e:
             print(e)
-            votesA = "<i>An error occured</i>"
-            votesB = "<i>An error occured</i>"
+            votesA = "An error occurred"
+            votesB = "An error occurred"
 
-    with open('/var/run/secrets/kubernetes.io/serviceaccount/namespace', 'r') as fp:
-        namespace = fp.read()
-
-    resp = make_response(render_template(
-        'index.html',
-        option_a=option_a,
-        option_b=option_b,
-        hostname=hostname,
-        namespace=namespace,
-        votes_a=votesA,
-        votes_b=votesB,
-    ))
-    return resp
-
-
-if __name__ == "__main__":
-    extra_files = []
-    if "development" == os.getenv("FLASK_ENV"):
-        app.jinja_env.auto_reload = True
-        app.config['TEMPLATES_AUTO_RELOAD'] = True
-        extra_files=[
-            "./static/stylesheets/style.css"
-        ]
-
-    app.run(
-        host='0.0.0.0',
-        port=8080,
-        extra_files=extra_files
-    )
+    return templates.TemplateResponse(request, 'index.html', {
+        'option_a': option_a,
+        'option_b': option_b,
+        'hostname': hostname,
+        'namespace': getNamespace(),
+        'votes_a': votesA,
+        'votes_b': votesB,
+    })

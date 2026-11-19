@@ -1,0 +1,19 @@
+# Files that the Okteto CLI sends to Remote Execution.
+
+# "okteto deploy" and "okteto destroy" only need the Docker Compose file
+[deploy]
+*
+!docker-compose.yml
+
+[destroy]
+*
+!docker-compose.yml
+
+# "okteto test" only needs what "pip install" and "pytest" read
+[test]
+*
+!vote/requirements.txt
+!vote/requirements-test.txt
+!vote/*.py
+!vote/static
+!vote/templates

@@ -1,20 +1,16 @@
-# Using official python runtime base image
-FROM python:3-slim
+FROM python:3.15.2-trixie AS dev
 
-# Set the application directory
-WORKDIR /src
+WORKDIR /usr/src/app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
 
-RUN pip install --upgrade pip
+FROM python:3.15.2-slim-trixie AS prod
 
-# Install our requirements.txt
-ADD requirements.txt requirements.txt
-RUN pip install -r requirements.txt
-
-# Copy our code from the current folder to /app inside the container
-ADD . /src
-
-# Make port 8080 available for links and/or publish
-EXPOSE 8080
-
-# Define our command to be run when launching the container
-CMD ["python", "app.py"]
+WORKDIR /usr/src/app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY app.py .
+COPY static static
+COPY templates templates
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8080"]

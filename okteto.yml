@@ -1,0 +1,27 @@
+build:
+  dev:
+    context: vote
+    target: dev
+
+deploy:
+  compose: docker-compose.yml
+
+test:
+  unit:
+    image: ${OKTETO_BUILD_DEV_IMAGE}
+    caches:
+      - /root/.cache/pip
+    commands:
+      - pip install -r vote/requirements-test.txt
+      - pytest vote --junitxml=report.xml
+    artifacts:
+      - report.xml
+
+dev:
+  vote:
+    image: ${OKTETO_BUILD_DEV_IMAGE}
+    command: uvicorn app:app --host 0.0.0.0 --port 8080 --reload
+    sync:
+      - vote:/usr/src/app
+    persistentVolume:
+      enabled: false
