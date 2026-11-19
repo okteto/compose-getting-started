@@ -1,0 +1,29 @@
+build:
+  dev:
+    context: vote
+    target: dev
+
+deploy:
+  compose: docker-compose.yml
+
+test:
+  unit:
+    image: ${OKTETO_BUILD_DEV_IMAGE}
+    caches:
+      - /root/.cache/pip
+    commands:
+      - pip install -r vote/requirements-test.txt
+      - pytest vote --junitxml=report.xml
+    artifacts:
+      - report.xml
+
+dev:
+  vote:
+    image: ${OKTETO_BUILD_DEV_IMAGE}
+    command: python app.py
+    environment:
+      - FLASK_DEBUG=1
+    sync:
+      - vote:/usr/src/app
+    persistentVolume:
+      enabled: false

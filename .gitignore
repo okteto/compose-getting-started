@@ -1,6 +1,8 @@
+__pycache__/
 *.pyc
-project.lock.json
-bin/
-obj/
-.vs/
-node_modules/
+.pytest_cache/
+.venv/
+venv/
+
+# Test report of "okteto test"
+report.xml

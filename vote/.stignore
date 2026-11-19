@@ -1,0 +1,12 @@
+# Files that "okteto up" does not synchronize with the development container.
+
+# Files generated inside the development container
+__pycache__
+/.pytest_cache
+
+# Local-only files
+.venv
+venv
+.idea
+.vscode
+.DS_Store
